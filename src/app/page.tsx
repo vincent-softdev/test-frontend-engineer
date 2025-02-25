@@ -1,3 +1,4 @@
+import ProductCard from "@/components/ProductCard";
 import { ProductService } from "@/services/ProductService";
 import { Product } from "@/types";
 
@@ -14,7 +15,12 @@ const HomePage = async () => {
 
   return (
     <div>
-      Clean project
+      <h1 className="text-2xl font-bold mb-4">Product Listing</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 }
