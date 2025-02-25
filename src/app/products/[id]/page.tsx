@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { ProductService } from '@/services/ProductService';
 import { Product } from '@/types';
 import { useCart } from '@/context/CartContext';
-import { FiHeart, FiShare2, FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
+import { FiHeart, FiShare2, FiMinusCircle, FiPlusCircle, FiMinus, FiPlus, FiShoppingBag } from 'react-icons/fi';
 
 const ProductDetailPage = () => {
   const params = useParams();
@@ -52,18 +52,31 @@ const ProductDetailPage = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 mb-6">
-          <button onClick={decrementQuantity} className="text-red-500"><FiMinusCircle size={24} /></button>
-          <span className="text-xl">{quantity}</span>
-          <button onClick={incrementQuantity} className="text-green-500"><FiPlusCircle size={24} /></button>
-        </div>
+        <div className='flex gap-4'>
+            <div className="flex w-fit items-center gap-2 bg-gray-100 rounded-full p-2 mb-6">
+            <button
+                className="text-xl p-2 cursor-pointer"
+                onClick={decrementQuantity}
+            >
+                <FiMinus />
+            </button>
+            <span className="text-xl">{quantity}</span>
+            <button
+                className="text-xl p-2  cursor-pointer"
+                onClick={incrementQuantity}
+            >
+                <FiPlus />
+            </button>
+            </div>
 
-        <button
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-500"
-          onClick={() => addToCart(product)}
-        >
-          Add To Cart
-        </button>
+            <button
+            className="bg-blue-900 h-fit text-white px-6 py-3 cursor-pointer rounded-full shadow flex items-center gap-2 hover:bg-blue-700"
+            onClick={() => addToCart(product, quantity)}
+            >
+            <FiShoppingBag />
+            Add To Cart
+            </button>
+        </div>
       </div>
     </div>
   );
