@@ -28,7 +28,7 @@ const ProductDetailPage = () => {
   if (!product) return <p>Loading...</p>;
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 p-8 bg-white shadow rounded-lg">
+    <div className="flex flex-col md:flex-row gap-8 p-8 bg-white shadow rounded-lg mt-[100px]">
       <div className="md:w-1/2">
         <img src={product.image} alt={product.title} className="rounded-lg w-full h-auto object-cover" />
       </div>
