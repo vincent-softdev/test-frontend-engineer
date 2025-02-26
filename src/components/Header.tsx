@@ -3,20 +3,19 @@ import { FiShoppingCart, FiHome } from 'react-icons/fi';
 
 const Header = () => {
   return (
-    <header className="bg-blue-600 text-white p-4 shadow-lg flex justify-between items-center">
-      <Link href="/">
-        <button className="flex items-center gap-2 hover:text-gray-300">
-          <FiHome size={24} />
-          Home
-        </button>
-      </Link>
-      <h1 className="text-2xl font-bold">My Store</h1>
-      <Link href="/cart">
-        <button className="flex items-center gap-2 hover:text-gray-300">
-          <FiShoppingCart size={24} />
-          Cart
-        </button>
-      </Link>
+    <header className=" text-black p-4 flex justify-center">
+      <div className='flex justify-between container mx-auto p-4'>
+        <Link href="/" className='flex-1'>
+          <button className="flex text-2xl items-center cursor-pointer gap-2 hover:font-bold">
+            VINCENT SHOPEE
+          </button>
+        </Link>
+        <Link href="/cart" className='flex-1 justify-end flex'>
+          <button className="flex items-center gap-2 hover:font-bold cursor-pointer">
+            <FiShoppingCart size={36} />
+          </button>
+        </Link>
+      </div>
     </header>
   );
 };
