@@ -1,10 +1,11 @@
 'use client';
 
+import CartItem from '@/components/CartItem';
 import { useCartStore } from '@/store/useCartStore';
-import { FiTrash2 } from "react-icons/fi";
+import { FiTrash2 } from 'react-icons/fi';
 
 const CartPage = () => {
-  const { cart, removeFromCart } = useCartStore();
+  const { cart, removeFromCart, updateQuantity } = useCartStore();
   const totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
 
   return (
@@ -16,27 +17,33 @@ const CartPage = () => {
       ) : (
         <div className="pt-10 pb-10">
           {cart.map((item) => (
-            <div key={item.product.id} className="border-b p-4 flex justify-between items-center">
-              <div className="flex gap-10">
-                {/* Product Image */}
-                <img className="h-[100px] w-[100px] object-cover rounded-md" src={item.product.image} alt={item.product.title} />
+            <CartItem key={item.product.id}>
+              {/* Product Image */}
+              <CartItem.Image src={item.product.image} alt={item.product.title} />
 
-                {/* Product Info */}
-                <div className="flex flex-col justify-between">
-                  <h2 className="font-bold text-2xl">{item.product.title}</h2>
-                  <p className="text-2xl">${item.product.price.toFixed(2)}</p>
-                  <p className="text-lg">Quantity: {item.quantity}</p>
-                </div>
-              </div>
-
-              {/* Remove Button */}
-              <button
-                className="text-red-500 cursor-pointer w-10 h-10 hover:text-red-700"
-                onClick={() => removeFromCart(item.product.id)}
+              {/* Product Info with Quantity Controls */}
+              <CartItem.Info 
+                title={item.product.title} 
+                price={item.product.price} 
+                quantity={item.quantity} 
+                rating={item.product.rating}
+                onIncrease={() => updateQuantity(item.product.id, item.quantity + 1)}
+                onDecrease={() => updateQuantity(item.product.id, item.quantity - 1)}
               >
-                <FiTrash2 className="w-full h-full" />
-              </button>
-            </div>
+                <CartItem.Category category={item.product.category} />
+              </CartItem.Info>
+
+              {/* Product Actions */}
+              <CartItem.Actions>
+                <button
+                  className="text-red-500 cursor-pointer w-10 h-10 hover:text-red-700"
+                  onClick={() => removeFromCart(item.product.id)}
+                  aria-label="Remove item"
+                >
+                  <FiTrash2 className="w-full h-full" />
+                </button>
+              </CartItem.Actions>
+            </CartItem>
           ))}
 
           {/* Total Price & Checkout */}

@@ -3,13 +3,13 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ProductService } from '@/services/ProductService';
-import { Product } from '@/types';
+import { IProduct } from '@/types';
 import { useCartStore } from '@/store/useCartStore';
 import { FiShoppingCart, FiMinus, FiPlus } from 'react-icons/fi';
 
 const ProductDetailPage = () => {
   const params = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<IProduct | null>(null);
   const addToCart = useCartStore((state) => state.addToCart);
   const [quantity, setQuantity] = useState(1);
 

@@ -1,36 +1,77 @@
-import { ICartItem } from '@/types';
-import { FiTrash2 } from 'react-icons/fi';
+import { ReactNode } from 'react';
+import { FiMinus, FiPlus } from 'react-icons/fi';
 
 type CartItemProps = {
-  item: ICartItem;
-  removeFromCart: (id: number) => void;
+  children?: ReactNode;
 };
 
-const CartItem = ({ item, removeFromCart }: CartItemProps) => {
+const CartItem = ({ children }: CartItemProps) => {
   return (
-    <div className="border-b p-4 flex justify-between items-center">
-      <div className="flex gap-10">
-        <img
-          className="h-[100px] w-[100px] object-cover rounded-md"
-          src={item.product.image}
-          alt={item.product.title}
-        />
-        <div className="flex flex-col justify-between">
-          <h2 className="font-bold text-2xl">{item.product.title}</h2>
-          <p className="text-2xl">${item.product.price.toFixed(2)}</p>
-          <p className="text-lg">Quantity: {item.quantity}</p>
-        </div>
-      </div>
-
-      <button
-        className="text-red-500 cursor-pointer w-10 h-10 hover:text-red-700"
-        onClick={() => removeFromCart(item.product.id)}
-        aria-label="Remove item"
-      >
-        <FiTrash2 className="w-full h-full" />
-      </button>
+    <div className="border-b p-4 flex flex-col gap-4">
+      <div className="flex gap-4">{children}</div>
     </div>
   );
 };
+
+/* Image Component */
+CartItem.Image = ({ src, alt }: { src: string; alt: string }) => (
+  <img className="h-[140px] w-[100px] object-cover rounded-md" src={src} alt={alt} />
+);
+
+/* Info Component */
+CartItem.Info = ({ title, price, quantity, rating, onIncrease, onDecrease, children }: { 
+  title: string; 
+  price: number; 
+  quantity: number;
+  rating: { rate: number; count: number }; 
+  onIncrease: () => void;
+  onDecrease: () => void;
+  children?: ReactNode; 
+}) => (
+  <div className="flex flex-col justify-between">
+    <h2 className="font-bold text-lg">{title}</h2>
+    <p className="text-lg font-bold flex items-center">
+      ${price.toFixed(2)} <span className="text-sm text-gray-600 ml-2">x {quantity}</span>
+    </p>
+    <CartItem.Rating rate={rating.rate} count={rating.count} />
+    <div className="flex gap-2">{children}</div>
+
+    {/* Quantity Controls */}
+    <div className="flex items-center gap-2 mt-2">
+      <button
+        className="bg-gray-200 px-3 py-1 rounded-md hover:bg-gray-300"
+        onClick={onDecrease}
+      >
+        <FiMinus />
+      </button>
+      <span className="text-lg">{quantity}</span>
+      <button
+        className="bg-gray-200 px-3 py-1 rounded-md hover:bg-gray-300"
+        onClick={onIncrease}
+      >
+        <FiPlus />
+      </button>
+    </div>
+  </div>
+);
+
+/* Rating Component */
+CartItem.Rating = ({ rate, count }: { rate: number; count: number }) => (
+  <div className="flex items-center text-sm text-gray-600">
+    ⭐ {rate} ({count} reviews)
+  </div>
+);
+
+/* Category Component */
+CartItem.Category = ({ category }: { category: string }) => (
+  <span className="bg-gray-200 text-xs font-bold px-2 py-1 rounded-md text-gray-700">
+    {category.toUpperCase()}
+  </span>
+);
+
+/* Actions Component */
+CartItem.Actions = ({ children }: { children: ReactNode }) => (
+  <div className="flex items-center">{children}</div>
+);
 
 export default CartItem;

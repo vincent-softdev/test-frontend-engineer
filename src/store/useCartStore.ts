@@ -1,18 +1,22 @@
 import { create } from 'zustand';
-import { ICartItem, Product } from '@/types';
+import { IProduct } from '@/types';
 
-// Setup cart state
-type CartState = {
-  cart: ICartItem[];
-  addToCart: (product: Product, quantity: number) => void;
-  removeFromCart: (id: number) => void;
-  clearCart: () => void;
-  cartCount: number;
+type CartItem = {
+  product: IProduct;
+  quantity: number;
 };
 
-export const useCartStore = create<CartState>((set, get) => ({
+type CartState = {
+  cart: CartItem[];
+  addToCart: (product: IProduct, quantity: number) => void;
+  removeFromCart: (id: number) => void;
+  updateQuantity: (id: number, quantity: number) => void;
+  clearCart: () => void;
+};
+
+export const useCartStore = create<CartState>((set) => ({
   cart: [],
-  // We need a function to add to cart
+
   addToCart: (product, quantity) => {
     set((state) => {
       const existingItem = state.cart.find((item) => item.product.id === product.id);
@@ -29,18 +33,22 @@ export const useCartStore = create<CartState>((set, get) => ({
       }
     });
   },
-  // Now remove from cart by item id
+
   removeFromCart: (id) => {
     set((state) => ({
       cart: state.cart.filter((item) => item.product.id !== id),
     }));
   },
 
-  // We should allow user to clear the cart
-  clearCart: () => set({ cart: [] }),
-
-  // We need to calculate cart count
-  get cartCount() {
-    return get().cart.reduce((total, item) => total + item.quantity, 0);
+  updateQuantity: (id, quantity) => {
+    set((state) => ({
+      cart: quantity > 0
+        ? state.cart.map((item) =>
+            item.product.id === id ? { ...item, quantity } : item
+          )
+        : state.cart.filter((item) => item.product.id !== id), // Remove if quantity is 0
+    }));
   },
+
+  clearCart: () => set({ cart: [] }),
 }));
