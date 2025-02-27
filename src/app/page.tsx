@@ -1,6 +1,6 @@
 import ProductCard from "@/components/ProductCard";
 import { ProductService } from "@/services/ProductService";
-import { Product } from "@/types";
+import { IProduct } from "@/types";
 
 export const metadata = {
   title: "Product Listing",
@@ -9,7 +9,7 @@ export const metadata = {
 
 const HomePage = async () => {
   // Initial product or load products
-  const products: Product[] = await ProductService.getProducts();
+  const products: IProduct[] = await ProductService.getProducts();
   // Test whether we do have the response
   console.log(products);
 

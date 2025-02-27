@@ -16,13 +16,13 @@ const CartPage = () => {
         <p className="text-xl text-gray-500">Your cart is empty.</p>
       ) : (
         <div className="pt-10 pb-10">
+          {/* List of cart items */}
           {cart.map((item) => (
+            // Cart Item compound component
             <CartItem key={item.product.id}>
-              {/* Product Image */}
               <CartItem.Image src={item.product.image} alt={item.product.title} />
-
-              {/* Product Info with Quantity Controls */}
-              <CartItem.Info 
+              
+              <CartItem.Info
                 title={item.product.title} 
                 price={item.product.price} 
                 quantity={item.quantity} 
@@ -33,7 +33,6 @@ const CartPage = () => {
                 <CartItem.Category category={item.product.category} />
               </CartItem.Info>
 
-              {/* Product Actions */}
               <CartItem.Actions>
                 <button
                   className="text-red-500 cursor-pointer w-10 h-10 hover:text-red-700"
@@ -46,7 +45,6 @@ const CartPage = () => {
             </CartItem>
           ))}
 
-          {/* Total Price & Checkout */}
           <div className="mt-6">
             <p className="font-bold text-2xl">Total: ${totalPrice.toFixed(2)}</p>
             <button className="bg-green-500 text-white px-6 py-3 rounded mt-4 hover:bg-green-600 transition">

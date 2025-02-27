@@ -5,7 +5,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { useCartStore } from '@/store/useCartStore';
 
 const Header = () => {
-  const cartCount = useCartStore((state) => state.cartCount);
+  const cartCount = useCartStore((state) => state);
 
   return (
     <header className="text-black p-4 flex justify-center">
@@ -22,12 +22,6 @@ const Header = () => {
           <button className="flex items-center gap-2 hover:font-bold cursor-pointer">
             <FiShoppingCart size={36} />
           </button>
-
-          {cartCount > 0 && (
-            <span className="absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-              {cartCount}
-            </span>
-          )}
         </Link>
       </div>
     </header>
