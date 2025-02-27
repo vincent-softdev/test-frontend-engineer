@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchStore } from '@/store/useSearchStore';
-import { IProduct } from '@/types';
+import { ProductService } from '@/services/ProductService';
 import { FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
 
-/** ✅ SRP: HeaderSearch only manages layout & behavior */
 const HeaderSearch = () => {
   return (
     <div className="relative w-64">
@@ -27,22 +26,14 @@ HeaderSearch.Input = () => {
       return;
     }
 
-    const fetchResults = async () => {
+    const fetchData = async () => {
       setLoading(true);
-      try {
-        const res = await fetch(`https://fakestoreapi.com/products`);
-        const data: IProduct[] = await res.json();
-        const filtered = data.filter((item) =>
-          item.title.toLowerCase().includes(query.toLowerCase())
-        );
-        setResults(filtered);
-      } catch (error) {
-        console.error('Error fetching search results:', error);
-      }
+      const results = await ProductService.searchProducts(query); // ✅ Uses ProductService
+      setResults(results);
       setLoading(false);
     };
 
-    const debounce = setTimeout(fetchResults, 300); // Debounce API call
+    const debounce = setTimeout(fetchData, 300); // ✅ Debounce API call
     return () => clearTimeout(debounce);
   }, [query, setResults]);
 

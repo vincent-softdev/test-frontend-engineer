@@ -15,4 +15,18 @@ export class ProductService {
         const response = await fetch(`${this.API_URL}/${id}`);
         return await response.json();
     }
+
+    public static async searchProducts(query: string): Promise<IProduct[]> {
+        if (!query) return [];
+    
+        try {
+          const allProducts = await this.getProducts(); // Reuse existing API call
+          return allProducts.filter((item) =>
+            item.title.toLowerCase().includes(query.toLowerCase())
+          );
+        } catch (error) {
+          console.error("Error fetching search results:", error);
+          return [];
+        }
+    }
 }

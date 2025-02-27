@@ -1,27 +1,21 @@
-import ProductCard from "@/components/ProductCard";
+import ProductList from "@/views/ProductList";
 import { ProductService } from "@/services/ProductService";
 import { IProduct } from "@/types";
 
 export const metadata = {
   title: "Product Listing",
-}
+};
 
 const ProductPage = async () => {
-  // Initial product or load products
+  // ✅ Fetch products from API
   const products: IProduct[] = await ProductService.getProducts();
-  // Test whether we do have the response
-  console.log(products);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Product Listing</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+    <div className="container mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-6">Product Listing</h1>
+      <ProductList products={products} />
     </div>
   );
-}
+};
 
-export default ProductPage
+export default ProductPage;

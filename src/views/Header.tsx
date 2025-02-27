@@ -1,10 +1,10 @@
 'use client';
 
 
-import HeaderCartIcon from './HeaderCartIcon';
-import HeaderLogo from './HeaderLogo';
-import HeaderNav from './HeaderNav';
-import HeaderSearch from './HeaderSearch';  // Import Search Component
+import HeaderCartIcon from '../components/Header/HeaderCartIcon';
+import HeaderLogo from '../components/Header/HeaderLogo';
+import HeaderNav from '../components/Header/HeaderNav';
+import HeaderSearch from '../components/Header/HeaderSearch';  // Import Search Component
 
 const Header = () => {
   return (

@@ -22,7 +22,7 @@ const CartItem = ({ children, className, ...props }: CartItemProps) => {
  */
 CartItem.Image = ({ src, alt, className, ...props }: HTMLAttributes<HTMLImageElement> & { src: string; alt: string }) => (
   <img
-    className={`h-[140px] w-[100px] object-cover rounded-md ${className}`}
+    className={`h-[140px] object-fill rounded-md ${className}`}
     src={src}
     alt={alt}
     {...props}
