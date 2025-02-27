@@ -31,8 +31,8 @@ const ProductDetailPage = () => {
     <div className="flex justify-center">
       <div className="flex flex-col md:flex-row gap-8 w-fit p-10 bg-white shadow rounded-lg mt-[100px]">
         {/* Product Image */}
-        <div className="md:w-1/2 flex justify-end">
-          <img src={product.image} alt={product.title} className="rounded-lg w-full max-w-[400px] h-auto object-cover" />
+        <div className="md:w-1/2 flex justify-center">
+          <img src={product.image} alt={product.title} className="rounded-lg max-h-[320px] object-fill" />
         </div>
 
         {/* Product Details */}

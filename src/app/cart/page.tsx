@@ -22,26 +22,28 @@ const CartPage = () => {
             <CartItem key={item.product.id}>
               <CartItem.Image src={item.product.image} alt={item.product.title} />
               
-              <CartItem.Info
-                title={item.product.title} 
-                price={item.product.price} 
-                quantity={item.quantity} 
-                rating={item.product.rating}
-                onIncrease={() => updateQuantity(item.product.id, item.quantity + 1)}
-                onDecrease={() => updateQuantity(item.product.id, item.quantity - 1)}
-              >
-                <CartItem.Category category={item.product.category} />
-              </CartItem.Info>
-
-              <CartItem.Actions>
-                <button
-                  className="text-red-500 cursor-pointer w-10 h-10 hover:text-red-700"
-                  onClick={() => removeFromCart(item.product.id)}
-                  aria-label="Remove item"
+              <div className='flex w-full justify-between'>
+                <CartItem.Info
+                  title={item.product.title} 
+                  price={item.product.price} 
+                  quantity={item.quantity} 
+                  rating={item.product.rating}
+                  onIncrease={() => updateQuantity(item.product.id, item.quantity + 1)}
+                  onDecrease={() => updateQuantity(item.product.id, item.quantity - 1)}
                 >
-                  <FiTrash2 className="w-full h-full" />
-                </button>
-              </CartItem.Actions>
+                  <CartItem.Category category={item.product.category} />
+                </CartItem.Info>
+
+                <CartItem.Actions>
+                  <button
+                    className="text-red-500 cursor-pointer w-10 h-10 hover:text-red-700"
+                    onClick={() => removeFromCart(item.product.id)}
+                    aria-label="Remove item"
+                  >
+                    <FiTrash2 className="w-full h-full" />
+                  </button>
+                </CartItem.Actions>
+              </div>
             </CartItem>
           ))}
 
