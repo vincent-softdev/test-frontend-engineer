@@ -8,6 +8,7 @@ type CartItem = {
 
 type CartState = {
   cart: CartItem[];
+  cartCount: number; // ✅ Now properly updates
   addToCart: (product: IProduct, quantity: number) => void;
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
@@ -16,39 +17,59 @@ type CartState = {
 
 export const useCartStore = create<CartState>((set) => ({
   cart: [],
+  cartCount: 0, // ✅ Initial state
 
   addToCart: (product, quantity) => {
     set((state) => {
       const existingItem = state.cart.find((item) => item.product.id === product.id);
+      let updatedCart;
+
       if (existingItem) {
-        return {
-          cart: state.cart.map((item) =>
-            item.product.id === product.id
-              ? { ...item, quantity: item.quantity + quantity }
-              : item
-          ),
-        };
+        updatedCart = state.cart.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
       } else {
-        return { cart: [...state.cart, { product, quantity }] };
+        updatedCart = [...state.cart, { product, quantity }];
       }
+
+      return {
+        cart: updatedCart,
+        cartCount: updatedCart.reduce((total, item) => total + item.quantity, 0), // ✅ Updates cart count dynamically
+      };
     });
   },
 
   removeFromCart: (id) => {
-    set((state) => ({
-      cart: state.cart.filter((item) => item.product.id !== id),
-    }));
+    set((state) => {
+      const updatedCart = state.cart.filter((item) => item.product.id !== id);
+
+      return {
+        cart: updatedCart,
+        cartCount: updatedCart.reduce((total, item) => total + item.quantity, 0), // ✅ Updates dynamically
+      };
+    });
   },
 
   updateQuantity: (id, quantity) => {
-    set((state) => ({
-      cart: quantity > 0
-        ? state.cart.map((item) =>
-            item.product.id === id ? { ...item, quantity } : item
-          )
-        : state.cart.filter((item) => item.product.id !== id), // Remove if quantity is 0
-    }));
+    set((state) => {
+      let updatedCart;
+
+      if (quantity > 0) {
+        updatedCart = state.cart.map((item) =>
+          item.product.id === id ? { ...item, quantity } : item
+        );
+      } else {
+        updatedCart = state.cart.filter((item) => item.product.id !== id); // ✅ Remove if quantity is 0
+      }
+
+      return {
+        cart: updatedCart,
+        cartCount: updatedCart.reduce((total, item) => total + item.quantity, 0), // ✅ Updates dynamically
+      };
+    });
   },
 
-  clearCart: () => set({ cart: [] }),
+  clearCart: () => set({ cart: [], cartCount: 0 }), // ✅ Reset count when cart is cleared
 }));

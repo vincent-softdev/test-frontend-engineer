@@ -3,13 +3,14 @@ import { ProductService } from "@/services/ProductService";
 import { IProduct } from "@/types";
 
 export const metadata = {
-  title: "Home",
-  description: "List of products with Next.js",
+  title: "Product Listing",
 }
 
-const HomePage = async () => {
+const ProductPage = async () => {
   // Initial product or load products
   const products: IProduct[] = await ProductService.getProducts();
+  // Test whether we do have the response
+  console.log(products);
 
   return (
     <div>
@@ -23,4 +24,4 @@ const HomePage = async () => {
   );
 }
 
-export default HomePage
+export default ProductPage
