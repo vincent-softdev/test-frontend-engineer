@@ -6,3 +6,9 @@ export type Product = {
     category: string;
     image: string;
 }
+
+// Setup cart item type
+export interface ICartItem {
+    product: Product;
+    quantity: number;
+  };

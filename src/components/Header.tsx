@@ -1,19 +1,33 @@
+'use client';
+
 import Link from 'next/link';
-import { FiShoppingCart, FiHome } from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
+import { useCartStore } from '@/store/useCartStore';
 
 const Header = () => {
+  const cartCount = useCartStore((state) => state.cartCount);
+
   return (
-    <header className=" text-black p-4 flex justify-center">
-      <div className='flex justify-between container mx-auto p-4'>
-        <Link href="/" className='flex-1'>
+    <header className="text-black p-4 flex justify-center">
+      <div className="flex justify-between container mx-auto p-4">
+        {/* Home Button */}
+        <Link href="/" className="flex-1">
           <button className="flex text-2xl items-center cursor-pointer gap-2 hover:font-bold">
             VINCENT SHOPEE
           </button>
         </Link>
-        <Link href="/cart" className='flex-1 justify-end flex'>
+
+        {/* Cart Button with Cart Count Badge */}
+        <Link href="/cart" className="flex-1 justify-end flex relative">
           <button className="flex items-center gap-2 hover:font-bold cursor-pointer">
             <FiShoppingCart size={36} />
           </button>
+
+          {cartCount > 0 && (
+            <span className="absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+              {cartCount}
+            </span>
+          )}
         </Link>
       </div>
     </header>
