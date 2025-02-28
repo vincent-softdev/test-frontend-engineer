@@ -23,12 +23,12 @@ const CheckoutSteps = ({ children }: { children: React.ReactNode[] }) => {
         >
           Back
         </button>
-        <button
+        {step !== children.length - 1 && <button
           onClick={() => setStep((prev) => Math.min(prev + 1, children.length - 1))}
           className="px-4 py-2 bg-blue-500 text-white rounded-md"
         >
-          {step === children.length - 1 ? "Confirm Order" : "Next"}
-        </button>
+          Next
+        </button>}
       </div>
     </div>
   );
