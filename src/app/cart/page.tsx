@@ -2,11 +2,13 @@
 
 import CartItem from '@/components/CartItem';
 import { useCartStore } from '@/store/useCartStore';
+import { useRouter } from "next/navigation";
 import { FiTrash2 } from 'react-icons/fi';
 
 const CartPage = () => {
   const { cart, removeFromCart, updateQuantity } = useCartStore();
   const totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+  const router = useRouter();
 
   return (
     <div className="container mx-auto p-6">
@@ -49,7 +51,7 @@ const CartPage = () => {
 
           <div className="mt-6">
             <p className="font-bold text-2xl">Total: ${totalPrice.toFixed(2)}</p>
-            <button className="bg-green-500 text-white px-6 py-3 rounded mt-4 hover:bg-green-600 transition">
+            <button onClick={() => router.push("/checkout")} className="bg-green-500 text-white px-6 py-3 rounded mt-4 hover:bg-green-600 transition">
               Proceed to Checkout
             </button>
           </div>
