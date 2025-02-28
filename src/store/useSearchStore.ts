@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { IProduct } from '@/types';
 
+// Search state
 type SearchState = {
   query: string;
   results: IProduct[];

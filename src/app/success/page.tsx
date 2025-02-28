@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 
+// Just a simple success page
 const SuccessPage = () => {
   const router = useRouter();
 

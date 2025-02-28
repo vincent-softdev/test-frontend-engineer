@@ -4,6 +4,9 @@ import { useState } from "react";
 const CheckoutForm = () => {
   const [form, setForm] = useState({ name: "", address: "", email: "" });
 
+  // Normally, this screen will ask user to enter quite a list of details
+  // However, this is just a fake form, so I will skip this step
+  // ❌ Please do not skip me like I skip this step
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Shipping Details</h2>

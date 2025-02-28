@@ -5,22 +5,27 @@ import { useCartStore } from '@/store/useCartStore';
 import { useRouter } from "next/navigation";
 import { FiTrash2 } from 'react-icons/fi';
 
+// Cart page
 const CartPage = () => {
+  // Access cart store to get Cart infor from state, removeFromCart and updateQuantity
   const { cart, removeFromCart, updateQuantity } = useCartStore();
+  // Calculate total price
   const totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+  
   const router = useRouter();
 
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
 
+      {/* 🚀 Let load all Cart item if cart is not empty */}
       {cart.length === 0 ? (
         <p className="text-xl text-gray-500">Your cart is empty.</p>
       ) : (
         <div className="pt-10 pb-10">
           {/* List of cart items */}
           {cart.map((item) => (
-            // Cart Item compound component
+            // 🚀 Cart Item compound component
             <CartItem key={item.product.id}>
               <CartItem.Image src={item.product.image} alt={item.product.title} />
               
@@ -48,7 +53,7 @@ const CartPage = () => {
               </div>
             </CartItem>
           ))}
-
+          {/* 🛠 Move to Checkout */}
           <div className="mt-6">
             <p className="font-bold text-2xl">Total: ${totalPrice.toFixed(2)}</p>
             <button onClick={() => router.push("/checkout")} className="bg-green-500 text-white px-6 py-3 rounded mt-4 hover:bg-green-600 transition">

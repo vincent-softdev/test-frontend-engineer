@@ -1,5 +1,6 @@
 import { useCartStore } from "@/store/useCartStore";
 
+// ✅ Summary what user has ordered
 const OrderSummary = () => {
   const { cart } = useCartStore();
   const total = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);

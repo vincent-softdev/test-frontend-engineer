@@ -2,6 +2,7 @@
 import SocialLinks from "@/components/SocialLinks";
 import Image from "next/image";
 
+// This is the about page: Showing my profile
 const AboutPage = () => {
     return (
         <section className="bg-gray-900 text-white py-16 px-8 flex flex-col md:flex-row items-center justify-between">
@@ -18,7 +19,7 @@ const AboutPage = () => {
           {/* Right Profile Image */}
           <div className="md:w-1/3 mt-8 md:mt-0">
             <Image
-              src="/vincent_ly.jpg"
+              src="/vincent_ly.webp"
               alt="Vincent Ly"
               width={300}
               height={300}

@@ -12,6 +12,7 @@ const CheckoutSteps = ({ children }: { children: React.ReactNode[] }) => {
 
   return (
     <div className="bg-gray-100 p-6 rounded-lg max-w-3xl mx-auto">
+      {/* ✅ Each Step will run in here */}
       {children[step]}
 
       {/* Navigation Buttons */}

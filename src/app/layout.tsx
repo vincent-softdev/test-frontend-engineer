@@ -15,9 +15,32 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// SEO metadata suggested by ChatGPT
 export const metadata: Metadata = {
-  title: "Vincent Shopee",
-  description: "Secure shopping experience",
+  title: "Vincent Shopee - Best Online Shopping",
+  description: "Shop the latest fashion trends, electronics, and more at Vincent Shopee.",
+  keywords: "fashion, shopping, electronics, online store",
+  openGraph: {
+    title: "Vincent Shopee - Best Online Shopping",
+    description: "Discover amazing deals and the latest fashion trends.",
+    url: "https://vincently.dev",
+    siteName: "Vincent Shopee",
+    images: [
+      {
+        url: "/public/seo-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Vincent Shopee Online Store",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vincent Shopee - Best Online Shopping",
+    description: "Shop the latest trends at Vincent Shopee!",
+    images: ["/public/seo-image.jpg"],
+  },
 };
 
 // ✅ Check if the route is login (Next.js does not provide `pathname` here, so we check manually)

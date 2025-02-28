@@ -19,6 +19,7 @@ const CheckoutPage = () => {
     <div className="p-10 bg-white shadow-md rounded-md max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-center">Checkout</h1>
       <CheckoutSteps>
+        {/* 🚀 Checkout Steps */}
         <OrderSummary />
         <CheckoutForm />
         <PaymentMethod />

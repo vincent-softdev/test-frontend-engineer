@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 
+// ✅ Nah, this is just a fake payment method
+// I will skip this step
+// ❌ Again, please do not skip me as I skip this step
 const PaymentMethod = () => {
   const [method, setMethod] = useState("credit-card");
 

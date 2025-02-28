@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+// ✅ SRP: HeaderNav only controls layout
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Me' },

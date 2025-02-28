@@ -7,14 +7,21 @@ import { IProduct } from '@/types';
 import { useCartStore } from '@/store/useCartStore';
 import { FiShoppingCart, FiMinus, FiPlus } from 'react-icons/fi';
 
+// This is the long form of the component
+// Do not have enough time so I will not separate this file
 const ProductDetailPage = () => {
+  // Get the params: id
   const params = useParams();
+  // State
   const [product, setProduct] = useState<IProduct | null>(null);
+  // 🔥 Add item to Cart -> Call the Store (state management to handle to save item)
   const addToCart = useCartStore((state) => state.addToCart);
+  // We do want to know how many items are in the cart
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const id = params?.id;
+    // Sometime user will try to check with empty string
     if (typeof id === 'string' && !isNaN(Number(id))) {
       ProductService.getProduct(Number(id))
         .then(setProduct)

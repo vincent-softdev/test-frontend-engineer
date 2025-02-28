@@ -17,7 +17,7 @@ const LoginPage = () => {
   return (
     <div className="h-screen flex flex-col justify-center items-center text-center">
       <h1 className="text-3xl font-bold mb-6">Login to Vincent Shopee</h1>
-
+      {/* 🚀 Login buttons */}
       <button
         onClick={async () => {
           await loginWithGoogle();
@@ -27,7 +27,7 @@ const LoginPage = () => {
       >
         Login with Google
       </button>
-
+      {/* 🚀 Guest login: We might want to allow user to go and skim through our items */}
       <button
         onClick={async () => {
           await loginAsGuest();

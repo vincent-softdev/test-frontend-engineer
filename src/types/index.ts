@@ -16,3 +16,16 @@ export interface ICartItem {
     product: IProduct;
     quantity: number;
   };
+
+
+export interface IUser {
+  name: string;
+  email: string;
+  profileImage?: string;
+};
+
+
+export interface ICartItem {
+  product: IProduct;
+  quantity: number;
+};

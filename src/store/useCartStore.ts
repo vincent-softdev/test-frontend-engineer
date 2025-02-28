@@ -1,13 +1,9 @@
 import { create } from 'zustand';
-import { IProduct } from '@/types';
+import { ICartItem, IProduct } from '@/types';
 
-type CartItem = {
-  product: IProduct;
-  quantity: number;
-};
-
+// ✅ Same, I will not separate this to other type cause it only used for Cart Store
 type CartState = {
-  cart: CartItem[];
+  cart: ICartItem[];
   cartCount: number; // ✅ Now properly updates
   addToCart: (product: IProduct, quantity: number) => void;
   removeFromCart: (id: number) => void;
