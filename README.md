@@ -6,6 +6,8 @@ This project is a **responsive e-commerce web application** with authentication,
 ## 🚀 **Live Demo**
 🔗 **[View the live site on Vercel](https://test-frontend-engineer-lemon.vercel.app/)**  
 
+<img width="348" alt="Screenshot 2025-02-28 at 10 53 25 pm" src="https://github.com/user-attachments/assets/e32bd431-f390-4289-a87e-b4cafed612fd" />
+
 ---
 
 ## 📌 **Features & Functionality**
