@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation";
 
 const HeaderUser = () => {
   const { user, logout } = useAuthStore();
-  const router = useRouter(); // ✅ Correct placement inside a component
+  const router = useRouter();
 
   const handleLogout = async () => {
     await logout();
-    router.push("/login"); // ✅ Redirects after logging out
+    router.push("/login");
   };
 
   if (!user) {

@@ -3,7 +3,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { useCartStore } from '@/store/useCartStore';
 
 const HeaderCartIcon = () => {
-  const cartCount = useCartStore((state) => state.cartCount); // ✅ Now dynamically updates
+  const cartCount = useCartStore((state) => state.cart.reduce((acc, item) => acc + item.quantity, 0)); // ✅ Count all items
 
   return (
     <Link href="/cart" className="relative">

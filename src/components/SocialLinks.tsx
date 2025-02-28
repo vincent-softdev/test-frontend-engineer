@@ -2,7 +2,7 @@ import { FiGithub, FiLinkedin, FiGlobe } from "react-icons/fi";
 
 const SocialLinks = () => {
   return (
-    <div className="flex gap-4 mt-6">
+    <div className="flex gap-4 mt-6 ">
       <a
         href="https://github.com/vincent-softdev"
         target="_blank"
