@@ -2,6 +2,7 @@
 import CheckoutForm from "@/components/checkout/CheckoutForm";
 import CheckoutSteps from "@/components/checkout/CheckoutSteps";
 import OrderSummary from "@/components/checkout/OrderSummary";
+import PaymentMethod from "@/components/checkout/PaymentMethod";
 import { useRouter } from "next/navigation";
 
 const CheckoutPage = () => {
@@ -13,6 +14,7 @@ const CheckoutPage = () => {
       <CheckoutSteps>
         <OrderSummary />
         <CheckoutForm />
+        <PaymentMethod />
         <div className="text-center">
           <h2 className="text-xl font-bold mb-4">Review & Confirm</h2>
           <p>Make sure everything is correct before confirming your order.</p>
