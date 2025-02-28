@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthGuard from "@/components/AuthGuard";
-import Header from "@/views/Header";
+import HeaderView from "@/views/Header";
 
 // ✅ Define fonts
 const geistSans = Geist({
@@ -58,7 +58,7 @@ export default function RootLayout({
           children // ✅ Render login page directly without `AuthGuard`
         ) : (
           <AuthGuard> {/* ✅ Protect all other pages */}
-            <Header />
+            <HeaderView />
             <main className="container mx-auto p-4">{children}</main>
           </AuthGuard>
         )}
