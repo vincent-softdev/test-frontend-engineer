@@ -10,7 +10,7 @@ const ProductList = ({ products }: ProductListProps) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {products.map((product) => (
-        <ProductCard key={product.id} className="relative flex flex-col h-full">
+        <ProductCard key={product.id} id={product.id} className="relative flex flex-col h-full">
           {/* ✅ Image Section */}
           <div className="flex-grow flex items-center justify-center">
             <ProductCard.Image src={product.image} alt={product.title} />

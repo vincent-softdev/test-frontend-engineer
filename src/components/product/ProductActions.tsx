@@ -30,7 +30,7 @@ const ProductActions = ({ product }: ProductActionsProps) => {
 
       {/* ✅ Add to Cart Button */}
       <button
-        className="ml-10 md:text-[32px] sm:text-[24px] cursor-pointer"
+        className="ml-10 md:text-[32px] sm:text-[24px] mb-5 cursor-pointer"
         onClick={() => addToCart(product, quantity)}
       >
         <FiShoppingCart className="text-black" />

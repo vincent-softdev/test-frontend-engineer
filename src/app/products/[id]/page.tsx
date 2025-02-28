@@ -1,48 +1,28 @@
-"use client";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { ProductService } from "@/services/ProductService";
-
-import { IProduct } from "@/types";
 import ProductNotFound from "@/components/product/ProductNotFound";
 import ProductDetailCard from "@/components/product/ProductDetailCard";
 
-const ProductDetailPage = () => {
-  const params = useParams();
-  const [product, setProduct] = useState<IProduct | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// ✅ Server Component (NO "use client")
+const ProductDetailPage = async ({ params }: { params: { id?: string } }) => {
+  const awaitedParams = await params;
+  const id = Number(awaitedParams.id);
 
-  useEffect(() => {
-    const id = params?.id;
+  if (isNaN(id)) {
+    console.error("❌ Invalid product ID:", params.id);
+    return <ProductNotFound />;
+  }
 
-    if (typeof id === "string" && !isNaN(Number(id))) {
-      ProductService.getProduct(Number(id))
-        .then((data) => {
-          if (data) {
-            setProduct(data);
-          } else {
-            setError("Product not found");
-          }
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Error fetching product:", err);
-          setError("Failed to load product details.");
-          setLoading(false);
-        });
-    } else {
-      setError("Invalid product ID.");
-      setLoading(false);
-    }
-  }, [params]);
+  const product = await ProductService.getProduct(id);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <ProductNotFound />; // ✅ Show error page if product not found
+  console.log("🔍 Product fetched:", product); // 🔍 Debugging API Response
+
+  if (!product) {
+    return <ProductNotFound />;
+  }
 
   return (
     <div className="flex justify-center">
-      {product ? <ProductDetailCard product={product} /> : <ProductNotFound />}
+      <ProductDetailCard product={product} />
     </div>
   );
 };

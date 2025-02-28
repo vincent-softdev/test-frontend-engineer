@@ -2,9 +2,12 @@
 import * as React from "react";
 import { useCartStore } from "@/store/useCartStore"; // ✅ Import cart store
 import { IProduct } from "@/types";
+import Link from "next/link";
 
-const ProductCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-    <div className={`rounded-lg border bg-white shadow-sm p-4 ${className}`}>{children}</div>
+const ProductCard = ({ children, id, className = "" }: { children: React.ReactNode; id: number; className?: string }) => (
+    <div className={`rounded-lg border bg-white shadow-sm p-4 cursor-pointer hover:shadow-lg transition ${className}`}>
+        {children}
+    </div>
 );
 
 const ProductCardImage = ({ src, alt, className = "" }: { src: string; alt: string; className?: string }) => (
@@ -62,7 +65,10 @@ const ProductCardActions = ({
 
     return (
         <div className={`flex justify-between items-center gap-2 mt-3 ${className}`}>
-            <ProductCardButton onClick={() => addToCart(product, 1)}>Add to Cart</ProductCardButton>
+            <ProductCardButton onClick={() => addToCart(product, 1)} className="cursor-pointer">Add to Cart</ProductCardButton>
+            <Link href={`/products/${product.id}`} className="bg-gray-300 text-white text-center px-4 py-2 rounded hover:bg-gray-400">
+                View Product
+            </Link>
         </div>
     );
 };
