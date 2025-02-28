@@ -1,4 +1,5 @@
 "use client";
+import CheckoutForm from "@/components/checkout/CheckoutForm";
 import CheckoutSteps from "@/components/checkout/CheckoutSteps";
 import OrderSummary from "@/components/checkout/OrderSummary";
 import { useRouter } from "next/navigation";
@@ -11,6 +12,7 @@ const CheckoutPage = () => {
       <h1 className="text-2xl font-bold mb-6 text-center">Checkout</h1>
       <CheckoutSteps>
         <OrderSummary />
+        <CheckoutForm />
         <div className="text-center">
           <h2 className="text-xl font-bold mb-4">Review & Confirm</h2>
           <p>Make sure everything is correct before confirming your order.</p>
