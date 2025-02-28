@@ -20,7 +20,12 @@ const CartPage = () => {
 
       {/* 🚀 Let load all Cart item if cart is not empty */}
       {cart.length === 0 ? (
-        <p className="text-xl text-gray-500">Your cart is empty.</p>
+        <>
+           <p className="text-xl text-gray-500">Your cart is empty.</p>
+           <button onClick={() => router.push("/")} className="bg-blue-300 cursor-pointer text-white px-6 py-3 rounded mt-4 hover:bg-blue-600 transition">
+              Continue Shopping
+            </button>
+        </>
       ) : (
         <div className="pt-10 pb-10">
           {/* List of cart items */}
@@ -56,9 +61,14 @@ const CartPage = () => {
           {/* 🛠 Move to Checkout */}
           <div className="mt-6">
             <p className="font-bold text-2xl">Total: ${totalPrice.toFixed(2)}</p>
-            <button onClick={() => router.push("/checkout")} className="bg-green-500 text-white px-6 py-3 rounded mt-4 hover:bg-green-600 transition">
-              Proceed to Checkout
-            </button>
+            <div className='flex gap-4'>
+              <button onClick={() => router.push("/checkout")} className="bg-green-500 text-white px-6 py-3 rounded mt-4 hover:bg-green-600 transition">
+                Proceed to Checkout
+              </button>
+              <button onClick={() => router.push("/")} className="bg-blue-300 cursor-pointer text-white px-6 py-3 rounded mt-4 hover:bg-blue-600 transition">
+                Continue Shopping
+              </button>
+            </div>
           </div>
         </div>
       )}
