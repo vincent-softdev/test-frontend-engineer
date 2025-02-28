@@ -82,6 +82,7 @@ yarn dev
 ---
 
 ## 📖 **Project Structure**
+Some information about my project structure
 ```
 📂 src
  ┣ 📂 app
@@ -92,10 +93,7 @@ yarn dev
  ┃ ┗ 📜 layout.tsx
  ┣ 📂 components
  ┃ ┣ 📂 Header
- ┃ ┣ 📂 Home
- ┃ ┣ 📂 Product
- ┃ ┣ 📂 Cart
- ┃ ┗ 📂 Checkout
+ ┃ ┗ 📂 checkout
  ┣ 📂 store
  ┃ ┗ 📜 useCartStore.ts (Zustand store)
  ┣ 📂 services
@@ -128,7 +126,7 @@ yarn dev
 ## 🎨 **Design Decisions**
 - ✅ **Minimalistic UI** for better user experience.
 - 📱 **Fully responsive** on **Mobile, Tablet & Desktop**.
-- 🛠 **Reusability** via **Compound Components**.
+- 🛠 **Reusability** via **Compound Components** and **S.O.L.I.D principles**.
 
 ---
 
@@ -156,13 +154,9 @@ yarn dev
 ## 📢 **Future Improvements**
 - ✅ **Add Testing (Jest / React Testing Library)**
 - ✅ **Implement Real Payment Gateway (Stripe)**
-- ✅ **Enhance SEO & Performance Optimization**
 
 ---
 
 ## 🏆 **Final Thoughts**
 🎯 **This project follows modern frontend standards** with **Next.js, TypeScript, and Zustand**.  
 🎯 **Fully optimized for performance & maintainability**.  
-🔥 **Now, your README is professional, detailed, and clear!** 🚀  
-
-Let me know if you need any more improvements! 😊
